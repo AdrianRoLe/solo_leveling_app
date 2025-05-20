@@ -1,0 +1,42 @@
+import { EXERCISE_TYPES } from "./Constants.tsx";
+import { IExercise } from "./Interfaces.tsx";
+
+class Exercise {
+
+	private exerciseData: IExercise;
+
+	constructor(
+		public name: string,
+	) {
+		this.exerciseData = this.createDefaultExercise(name);
+	}
+
+	private createDefaultExercise(
+		name: string,
+	): IExercise {
+		return {
+			id: crypto.randomUUID(),
+			name,
+			level: 1,
+			category: EXERCISE_TYPES.STRENGTH,
+			exp: 0,
+			start_date: new Date(),
+			start_weight: 0,
+			current_weight: 0
+		};
+	}
+
+	get data(): IExercise {
+		return this.exerciseData;
+	}
+
+	fromJson(json: IExercise): void {
+		this.exerciseData = json;
+	}
+
+	toJson(): IExercise {
+		return this.exerciseData;
+	}
+}
+
+export default Exercise;

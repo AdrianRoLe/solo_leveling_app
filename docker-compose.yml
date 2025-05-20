@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+    solo_leveling_app:
+        image: node:14.15.4-alpine3.12
+        ports:
+            - "2301:2301"
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        working_dir: /usr/src/app
+        environment:
+            - PORT=2301
+        command: ["sh", "-c", "npm install && npm start"]
