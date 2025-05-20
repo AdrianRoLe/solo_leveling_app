@@ -12,7 +12,7 @@ class User implements IUser {
 	trophies: string[];
 
 	constructor(username: string, password: string) {
-		this.id = crypto.randomUUID();
+		this.id = Math.random().toString(36).substring(2, 15);
 		this.username = username;
 		this.password = password;
 		this.global_level = 1;

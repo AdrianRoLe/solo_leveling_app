@@ -15,7 +15,7 @@ class Exercise {
 		name: string,
 	): IExercise {
 		return {
-			id: crypto.randomUUID(),
+			id: Math.random().toString(36).substring(2, 15),
 			name,
 			level: 1,
 			category: EXERCISE_TYPES.STRENGTH,
