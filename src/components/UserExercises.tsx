@@ -94,7 +94,7 @@ const UserExercises = ({
 							<p style={{ margin: 0, fontSize: '0.9em' }}>{exercise.category}</p>
 						</div>
 						<div style={{ textAlign: 'right' }}>
-							<p style={{ margin: 0, marginRight: '10px' }}>
+							<p style={{ margin: 0, marginRight: '10px', fontWeight: 'bold', fontSize: '1.2em' }}>
 								{exercise.current_weight} kg
 							</p>
 							<Button
@@ -123,6 +123,9 @@ const UserExercises = ({
 							>
 								*
 							</Button>
+							<p style={{ margin: 0, marginRight: '10px', fontSize: '0.8em' }}>
+								(from {exercise.start_weight} kg)
+							</p>
 						</div>
 					</div>
 				</li>

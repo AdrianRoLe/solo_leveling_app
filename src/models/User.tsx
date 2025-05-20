@@ -1,4 +1,5 @@
-import { IExercise, IUser } from './Interfaces';
+import { DEFAULT_COLOR_SCHEME } from './Constants.tsx';
+import { IExercise, IUser } from './Interfaces.tsx';
 
 class User implements IUser {
 	id: string;
@@ -7,6 +8,8 @@ class User implements IUser {
 	global_level: number;
 	global_exp: number;
 	exercises: IExercise[];
+	colorScheme: string;
+	trophies: string[];
 
 	constructor(username: string, password: string) {
 		this.id = crypto.randomUUID();
@@ -15,6 +18,8 @@ class User implements IUser {
 		this.global_level = 1;
 		this.global_exp = 0;
 		this.exercises = [];
+		this.colorScheme = DEFAULT_COLOR_SCHEME;
+		this.trophies = [];
 	}
 }
 

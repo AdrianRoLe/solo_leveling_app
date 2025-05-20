@@ -7,6 +7,8 @@ export interface IUser {
 	global_level: number;
 	global_exp: number;
 	exercises: IExercise[];
+	colorScheme: string;
+	trophies: string[];
 }
 
 

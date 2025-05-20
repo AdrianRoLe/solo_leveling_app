@@ -1,6 +1,5 @@
 import { Button } from '@mui/material';
 import React from 'react';
-import { FaCog } from 'react-icons/fa';
 import { APP_COLOR_ITEMS, COLOR_SCHEME_VALUES } from "../models/Constants.tsx";
 import User from '../models/User.tsx';
 
@@ -24,6 +23,19 @@ const UserInfo = ({
 	const applyColorScheme = COLOR_SCHEME_VALUES[colorScheme];
 
 	return (<>
+		<div style={{
+			width: '100%',
+			backgroundColor: applyColorScheme[APP_COLOR_ITEMS.APP_BG_COLOR],
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			color: applyColorScheme[APP_COLOR_ITEMS.PRIMARY],
+			fontSize: '32px',
+			fontWeight: 'bold',
+			borderRadius: '8px',
+			marginBottom: '20px',
+		}}>{loggedInUser.username}
+		</div>
 		<div
 			style={{
 				display: 'flex',
@@ -38,7 +50,7 @@ const UserInfo = ({
 		>
 			<div
 				style={{
-					width: `90%`,
+					width: `100%`,
 					backgroundColor: applyColorScheme[APP_COLOR_ITEMS.PRIMARY],
 					height: '100%',
 					transition: 'width 0.3s ease-in-out',
@@ -56,91 +68,79 @@ const UserInfo = ({
 			>
 				Level {loggedInUser.global_level}
 			</span>
-			<div
-				style={{
-					cursor: 'pointer',
-					zIndex: 1000,
-					marginRight: '10px',
-					marginTop: '10px',
-					marginBottom: '5px',
-					background: `transparent`,
-					border: 'none',
-				}}
-				onClick={() => setShowSettingsModal(true)}
-			>
-				<FaCog size={24} color={applyColorScheme[APP_COLOR_ITEMS.PRIMARY]} />
-			</div>
+
 		</div>
 
-		{showSettingsModal && (
-			<div style={{
-				position: 'fixed',
-				top: 0,
-				left: 0,
-				width: '100%',
-				height: '100%',
-				backgroundColor: 'rgba(0, 0, 0, 0.5)',
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'center',
-				zIndex: 1000,
-			}}>
-				<div
-					style={{
-						backgroundColor: 'white',
-						padding: '20px',
-						borderRadius: '8px',
-						textAlign: 'center',
-						width: '300px',
-						position: 'relative',
-					}}
-				>
-					<h3>Settings</h3>
-					<p>Choose a color scheme:</p>
-					<select
-						value={colorScheme}
-						onChange={(e) => handleColorSchemeChange(e.target.value)}
+		{
+			showSettingsModal && (
+				<div style={{
+					position: 'fixed',
+					top: 0,
+					left: 0,
+					width: '100%',
+					height: '100%',
+					backgroundColor: 'rgba(0, 0, 0, 0.5)',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+					zIndex: 1000,
+				}}>
+					<div
 						style={{
-							padding: '10px',
-							borderRadius: '5px',
-							border: '1px solid #ccc',
-							width: '100%',
+							backgroundColor: 'white',
+							padding: '20px',
+							borderRadius: '8px',
+							textAlign: 'center',
+							width: '300px',
+							position: 'relative',
 						}}
 					>
-						{Object.keys(COLOR_SCHEME_VALUES).map((scheme) => (
-							<option key={scheme} value={scheme}>
-								{scheme.charAt(0).toUpperCase() + scheme.slice(1)}
-							</option>
-						))}
-					</select>
-					<div style={{ marginTop: '20px' }}>
-						<Button
-							variant="contained"
-							onClick={() => setShowSettingsModal(false)}
+						<h3>Settings</h3>
+						<p>Choose a color scheme:</p>
+						<select
+							value={colorScheme}
+							onChange={(e) => handleColorSchemeChange(e.target.value)}
 							style={{
-								backgroundColor: applyColorScheme[APP_COLOR_ITEMS.PRIMARY],
-								color: applyColorScheme[APP_COLOR_ITEMS.SECONDARY],
+								padding: '10px',
+								borderRadius: '5px',
+								border: '1px solid #ccc',
+								width: '100%',
 							}}
 						>
-							Close
+							{Object.keys(COLOR_SCHEME_VALUES).map((scheme) => (
+								<option key={scheme} value={scheme}>
+									{scheme.charAt(0).toUpperCase() + scheme.slice(1)}
+								</option>
+							))}
+						</select>
+						<div style={{ marginTop: '20px' }}>
+							<Button
+								variant="contained"
+								onClick={() => setShowSettingsModal(false)}
+								style={{
+									backgroundColor: applyColorScheme[APP_COLOR_ITEMS.PRIMARY],
+									color: applyColorScheme[APP_COLOR_ITEMS.SECONDARY],
+								}}
+							>
+								Close
+							</Button>
+						</div>
+						<Button
+							variant="contained"
+							onClick={handleLogout}
+							style={{
+								backgroundColor: applyColorScheme[APP_COLOR_ITEMS.TERTIARY],
+								color: applyColorScheme[APP_COLOR_ITEMS.SECONDARY],
+								position: 'absolute',
+								bottom: '10px',
+								right: '10px',
+							}}
+						>
+							Logout
 						</Button>
 					</div>
-					<Button
-						variant="contained"
-						onClick={handleLogout}
-						style={{
-							backgroundColor: applyColorScheme[APP_COLOR_ITEMS.TERTIARY],
-							color: applyColorScheme[APP_COLOR_ITEMS.SECONDARY],
-							position: 'absolute',
-							bottom: '10px',
-							right: '10px',
-						}}
-					>
-						Logout
-					</Button>
 				</div>
-			</div>
-		)
+			)
 		}
 	</>)
 };
